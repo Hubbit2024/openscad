@@ -235,3 +235,8 @@ void UIUtils::openOfflineCheatSheet()
     QDesktopServices::openUrl(QUrl(docPath));
   }
 }
+
+QString UIUtils::getBackgroundColorStyleSheet(const QColor &color)
+{
+  return QString("background-color:%1;").arg(color.toRgb().name());
+}

@@ -279,8 +279,7 @@ private slots:
   void actionDisplayCSGTree();
   void actionDisplayCSGProducts();
   bool canExport(unsigned int dim);
-  void actionExport(FileFormat format, const char *type_name, const char *suffix, unsigned int dim);
-  void actionExport(FileFormat format, const char *type_name, const char *suffix, unsigned int dim, ExportPdfOptions *options);
+  void actionExport(unsigned int dim, ExportInfo& exportInfo);
   void actionExportFileFormat(int fmt);
   void actionCopyViewport();
   void actionFlushCaches();
@@ -399,8 +398,8 @@ private:
   EditorInterface *renderedEditor; // stores pointer to editor which has been most recently rendered
   time_t includes_mtime{0}; // latest include mod time
   time_t deps_mtime{0}; // latest dependency mod time
-  std::unordered_map<std::string, QString> export_paths; // for each file type, where it was exported to last
-  QString exportPath(const char *suffix); // look up the last export path and generate one if not found
+  std::unordered_map<QString, QString> export_paths; // for each file type, where it was exported to last
+  QString exportPath(const QString& suffix); // look up the last export path and generate one if not found
   int last_parser_error_pos{-1}; // last highlighted error position
   int tabCount = 0;
   paperSizes sizeString2Enum(const QString& current);

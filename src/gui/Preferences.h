@@ -128,6 +128,10 @@ public slots:
   void on_pushButtonSelectLocalSlicerPath_clicked();
   void on_lineEditLocalSlicer_editingFinished();
 
+  // Dialogs
+  void on_checkBoxAlwaysShowExportPdfDialog_toggled(bool);
+  void on_checkBoxAlwaysShowExport3mfDialog_toggled(bool);
+
 signals:
   void requestRedraw() const;
   void updateUndockMode(bool undockMode) const;

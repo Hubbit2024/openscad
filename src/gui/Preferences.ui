@@ -27,7 +27,7 @@
     <item row="0" column="0">
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>4</number>
+       <number>8</number>
       </property>
       <widget class="QWidget" name="page3DView">
        <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -147,7 +147,7 @@
              <x>0</x>
              <y>0</y>
              <width>781</width>
-             <height>1135</height>
+             <height>953</height>
             </rect>
            </property>
            <layout class="QGridLayout" name="gridLayout_5">
@@ -1302,8 +1302,8 @@
               <rect>
                <x>0</x>
                <y>0</y>
-               <width>84</width>
-               <height>26</height>
+               <width>100</width>
+               <height>30</height>
               </rect>
              </property>
              <layout class="QVBoxLayout" name="verticalLayout_10">
@@ -1720,8 +1720,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>781</width>
-             <height>1711</height>
+             <width>587</width>
+             <height>1442</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_12">
@@ -2480,8 +2480,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>98</width>
-             <height>28</height>
+             <width>795</width>
+             <height>660</height>
             </rect>
            </property>
           </widget>
@@ -2513,11 +2513,63 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>98</width>
-             <height>28</height>
+             <width>795</width>
+             <height>660</height>
             </rect>
            </property>
           </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="pageDialogs">
+       <layout class="QVBoxLayout" name="verticalLayout_18">
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QGroupBox" name="groupBox">
+          <property name="title">
+           <string>GroupBox</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_19">
+           <item>
+            <widget class="QCheckBox" name="checkBoxAlwaysShowExportPdfDialog">
+             <property name="text">
+              <string>Always show PDF export dialog</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QCheckBox" name="checkBoxAlwaysShowExport3mfDialog">
+             <property name="text">
+              <string>Always show 3MF export dialog</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>40</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
          </widget>
         </item>
        </layout>
@@ -2559,6 +2611,7 @@
    <addaction name="prefsActionAdvanced"/>
    <addaction name="prefsActionInput"/>
    <addaction name="prefsActionInputButton"/>
+   <addaction name="prefsActionDialogs"/>
   </widget>
   <action name="prefsAction3DView">
    <property name="checkable">
@@ -2663,6 +2716,18 @@
    </property>
    <property name="toolTip">
     <string>3D Printing Services</string>
+   </property>
+  </action>
+  <action name="prefsActionDialogs">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../../resources/common.qrc">
+     <normaloff>:/icons/prefsDialogs.png</normaloff>:/icons/prefsDialogs.png</iconset>
+   </property>
+   <property name="text">
+    <string>Dialogs</string>
    </property>
   </action>
  </widget>

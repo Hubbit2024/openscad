@@ -26,8 +26,8 @@
 
 #include "gui/ExternalToolInterface.h"
 
-#include <QtCore/qtemporaryfile.h>
-#include <QtCore/QDir>
+#include <QDir>
+#include <QTemporaryFile>
 
 #include "gui/OctoPrint.h"
 #include "io/export.h"
@@ -36,13 +36,7 @@
 bool ExternalToolInterface::exportTemporaryFile(const std::shared_ptr<const Geometry>& rootGeometry, 
   const QString& sourceFileName, const Camera *const camera)
 {
-  const ExportInfo exportInfo = {
-      .format = exportFormat_,
-      .title = sourceFileName.toStdString(),
-      .sourceFilePath = sourceFileName.toStdString(),
-      .camera = camera,
-      .defaultColor = { 0xf9, 0xd7, 0x2c, 255 } // Cornfield: CGAL_FACE_FRONT_COLOR
-  };
+  const ExportInfo exportInfo = createExportInfo(exportFormat_, fileformat::info(exportFormat_), sourceFileName.toStdString(), camera);
 
   // FIXME: Remove original suffix first
   QTemporaryFile exportFile{QDir::temp().filePath(

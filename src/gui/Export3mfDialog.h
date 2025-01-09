@@ -1,6 +1,6 @@
 /*
  *  OpenSCAD (www.openscad.org)
- *  Copyright (C) 2009-2011 Clifford Wolf <clifford@clifford.at> and
+ *  Copyright (C) 2009-2025 Clifford Wolf <clifford@clifford.at> and
  *                          Marius Kintel <marius@kintel.net>
  *
  *  This program is free software; you can redistribute it and/or modify
@@ -23,49 +23,45 @@
  *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
  */
+
 #pragma once
 
-#include <QColor>
-#include <QString>
-#include <QWidget>
-#include <QStringList>
-#include <QFileInfoList>
-#include <filesystem>
-namespace fs = std::filesystem;
+#include <memory>
+#include <optional>
+#include <QDialog>
 
-namespace UIUtils {
-static const int maxRecentFiles = 10;
+#include "Settings.h"
+#include "gui/qtgettext.h" // IWYU pragma: keep
+#include "io/export.h"
+#include "ui_Export3mfDialog.h"
+#include "gui/InitConfigurator.h"
 
-QFileInfo openFile(QWidget *parent = nullptr);
+using SEBool = Settings::SettingsEntryBool;
+using SEString = Settings::SettingsEntryString;
 
-QFileInfoList openFiles(QWidget *parent = nullptr);
+class Export3mfDialog : public QDialog, public Ui::Export3mfDialog, public InitConfigurator
+{
+  Q_OBJECT;
 
-QStringList recentFiles();
+public:
+  Export3mfDialog();
 
-QStringList exampleCategories();
+  int exec() override;
 
-QFileInfoList exampleFiles(const QString& category);
+  std::unique_ptr<const Export3mfOptions> getOptions() const {
+    return Export3mfOptions::fromSettings();
+  }
 
-void openURL(const QString& url);
+private slots:
+  void on_toolButtonColorsSelected_clicked();
+  void on_toolButtonColorsSelectedReset_clicked();
+  void on_toolButtonDecimalPrecisionReset_clicked();
+  void on_checkBoxAddMetaData_toggled(bool);
 
-void openHomepageURL();
+private:
+  void updateColor(const QColor& color);
+  void initMetaData(QCheckBox *, QLineEdit *, SEBool *, SEString&);
+  bool applyMetaData(const QCheckBox *, const QLineEdit *, SEBool *, SEString&);
 
-void openUserManualURL();
-
-fs::path returnOfflineUserManualPath();
-
-bool hasOfflineUserManual();
-
-void openOfflineUserManual();
-
-void openCheatSheetURL();
-
-fs::path returnOfflineCheatSheetPath();
-
-bool hasOfflineCheatSheet();
-
-void openOfflineCheatSheet();
-
-QString getBackgroundColorStyleSheet(const QColor &color);
-
-} // namespace UIUtils
+  QColor color;
+};
