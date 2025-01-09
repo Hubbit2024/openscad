@@ -1,0 +1,38 @@
+// Electrical Layout in OpenSCAD
+
+// Function to create text
+module layout_text(text, y_pos) {
+    translate([0, y_pos, 0])
+        text(text, size = 5, halign = "left");
+}
+
+// Main layout
+union() {
+    // Grundfos Well Controller
+    layout_text("Grundfos Well Controller", 0);
+    
+    // Control VFD or LC Controller
+    layout_text("Control VFD / LC Controller", -10);
+    
+    // Flow Rate Specification
+    layout_text("Flow Rate: 60 GPM", -20);
+    
+    // Control Box with Disconnect
+    layout_text("200 Amp Disconnect (480V 3-Phase)", -30);
+    layout_text("Converted to 240V Single Phase", -40);
+    
+    // Rectifiers and Feed Pump
+    layout_text("4 Rectifiers powering Feed Pump", -50);
+    layout_text("Electrocoagulation & Electro Oxidation Unit", -60);
+    
+    // Flow Meter and Control Options
+    layout_text("Flow Meter (60 GPM)", -70);
+    layout_text("Options: VFD / Equilibar Back Pressure Regulator", -80);
+    
+    // Electrodialysis System
+    layout_text("Electrodialysis System (60 GPM)", -90);
+    
+    // GAC Filter and Clarifier Tank
+    layout_text("GAC Filter", -100);
+    layout_text("1800 Gallon Clarifier Tank", -110);
+}
